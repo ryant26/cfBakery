@@ -1,0 +1,27 @@
+{
+  "name": "cfbakery",
+  "version": "0.0.1",
+  "description": "A tool for cloud foundry infastructure setup",
+  "main": "app.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryant26/cfBakery.git"
+  },
+  "keywords": [
+    "cloudfoundry",
+    "cloud",
+    "foundry",
+    "predix",
+    "infastructure",
+    "setup"
+  ],
+  "author": "Ryan Thornhill",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ryant26/cfBakery/issues"
+  },
+  "homepage": "https://github.com/ryant26/cfBakery#readme"
+}
