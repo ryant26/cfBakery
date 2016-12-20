@@ -23,5 +23,12 @@
   "bugs": {
     "url": "https://github.com/ryant26/cfBakery/issues"
   },
-  "homepage": "https://github.com/ryant26/cfBakery#readme"
+  "homepage": "https://github.com/ryant26/cfBakery#readme",
+  "devDependencies": {
+    "command-line-usage": "^3.0.8",
+    "gulp-cli": "^1.2.2"
+  },
+  "dependencies": {
+    "command-line-args": "^3.0.4"
+  }
 }
