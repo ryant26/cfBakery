@@ -1,8 +1,13 @@
-let CommandLineParser = rootRequire('libs/CLI/commandLineParser');
-let UserInteractionManager = rootRequire('libs/CLI/userInteractionManager');
+let CommandLineParser = global.rootRequire('libs/CLI/commandLineParser');
+let UserInteractionManager = global.rootRequire('libs/CLI/userInteractionManager');
 
-
-var CLI = function() {
+/**
+ * Starts the CLI:
+ * - Parses command line arguments
+ * - Prompts the user for missing arguments
+ * @constructor
+ */
+let CLI = function() {
     let clp = new CommandLineParser();
     let args = clp.getArgs();
 
@@ -12,8 +17,8 @@ var CLI = function() {
     }
 
     let uim = new UserInteractionManager({
-        requiredArgs: [{name: "cfUser", inputType: "input"}, {name: "cfPassword", inputType: "password"}],
-        args: args
+        requiredArgs: [{name: 'cfUser', inputType: 'input'}, {name: 'cfPassword', inputType: 'password'}],
+        args: args,
     });
 
     uim.getAllRequiredArguments();
