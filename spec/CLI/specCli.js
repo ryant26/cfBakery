@@ -9,6 +9,12 @@ let argumentPusher = function(arg, value) {
     process.argv.push(value);
 };
 
+let extractNames = function(array) {
+    return array.map(function(elm) {
+        return elm.name
+    });
+}
+
 describe('CLI', function() {
     let originalArgv;
 
@@ -53,8 +59,8 @@ describe('CLI', function() {
 
     it('Should not prompt for cfPassword --cfPassword present', function(done) {
         sinon.stub(inquirer, 'prompt', function(question) {
-            expect(question).to.have.lengthOf(1);
-            expect(question[0].message).to.not.equal('cfPassword>');
+            let names = extractNames(question);
+            expect(names).to.not.contain('cfPassword>');
             done();
         });
 
@@ -65,8 +71,8 @@ describe('CLI', function() {
 
     it('Should not prompt for cfPassword -p present', function(done) {
         sinon.stub(inquirer, 'prompt', function(question) {
-            expect(question).to.have.lengthOf(1);
-            expect(question[0].message).to.not.equal('cfPassword>');
+            let names = extractNames(question);
+            expect(names).to.not.contain('cfPassword>');
             done();
         });
 
@@ -86,10 +92,10 @@ describe('CLI', function() {
         cli();
     });
 
-    it('Should not prompt for cfPassword --cfUser present', function(done) {
+    it('Should not prompt for cfUser --cfUser present', function(done) {
         sinon.stub(inquirer, 'prompt', function(question) {
-            expect(question).to.have.lengthOf(1);
-            expect(question[0].message).to.not.equal('cfUser>');
+            let names = extractNames(question);
+            expect(names).to.not.contain('cfUser>');
             done();
         });
 
@@ -100,8 +106,8 @@ describe('CLI', function() {
 
     it('Should not prompt for cfUser -u present', function(done) {
         sinon.stub(inquirer, 'prompt', function(question) {
-            expect(question).to.have.lengthOf(1);
-            expect(question[0].message).to.not.equal('cfUser>');
+            let names = extractNames(question);
+            expect(names).to.not.contain('cfUser>');
             done();
         });
 
@@ -151,8 +157,10 @@ describe('CLI', function() {
         sinon.stub(inquirer, 'prompt');
         let username = 'user';
         let password = 'password';
+        let endpoint = 'endpoint';
         argumentPusher('-u', username);
         argumentPusher('-p', password);
+        argumentPusher('-e', endpoint);
         cli().then(function(args) {
             expect(args['cfUser']).to.equal(username);
             expect(args['cfPassword']).to.equal(password);

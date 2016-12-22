@@ -16,7 +16,9 @@ let CLI = function() {
     }
 
     let uim = new UserInteractionManager({
-        requiredArgs: [{name: 'cfUser', inputType: 'input'}, {name: 'cfPassword', inputType: 'password'}],
+        requiredArgs: [{name: 'cfUser', inputType: 'input'},
+            {name: 'cfPassword', inputType: 'password'},
+            {name: 'endpoint', inputType: 'input'}],
         args: args,
     });
 

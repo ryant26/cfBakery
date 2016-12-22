@@ -34,6 +34,12 @@ let CommandLineParser = {
                         description: 'A password for all UAA users / clients',
                     },
                     {
+                        name: 'endpoint',
+                        alias: 'e',
+                        typeLabel: '[underline]{String}',
+                        description: 'The cf endpoint to connect to',
+                    },
+                    {
                         name: 'help',
                         alias: 'h',
                         description: 'Show this help message',
@@ -53,6 +59,7 @@ let CommandLineParser = {
                 cfUser: 'u',
                 cfPassword: 'p',
                 globalPassword: 'g',
+                endpoint: 'e',
                 help: 'h',
             },
         });
