@@ -1,5 +1,5 @@
-let CommandLineParser = global.rootRequire('libs/CLI/commandLineParser');
-let UserInteractionManager = global.rootRequire('libs/CLI/userInteractionManager');
+let clp = global.rootRequire('CLI/commandLineParser');
+let UserInteractionManager = global.rootRequire('CLI/userInteractionManager');
 
 /**
  * Starts the CLI:
@@ -8,7 +8,6 @@ let UserInteractionManager = global.rootRequire('libs/CLI/userInteractionManager
  * @constructor
  */
 let CLI = function() {
-    let clp = new CommandLineParser();
     let args = clp.getArgs();
 
     if (args.help) {

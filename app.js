@@ -1,8 +1,6 @@
-global.rootRequire = function(name) {
-    return require(__dirname + '/' + name);
-};
+require('./libs/rootRequire');
 
-const cli = global.rootRequire('libs/CLI/cli');
+const cli = global.rootRequire('CLI/cli');
 
 if (!module.parent) {
     cli();
