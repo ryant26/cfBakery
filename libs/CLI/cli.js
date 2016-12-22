@@ -20,7 +20,7 @@ let CLI = function() {
         args: args,
     });
 
-    uim.getAllRequiredArguments();
+    return uim.getAllRequiredArguments();
 };
 
 module.exports = CLI;

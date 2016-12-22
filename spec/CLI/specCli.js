@@ -4,6 +4,11 @@ const sinon = require('sinon');
 const cli = global.rootRequire('CLI/cli');
 const inquirer = require('inquirer');
 
+let argumentPusher = function(arg, value) {
+    process.argv.push(arg);
+    process.argv.push(value);
+};
+
 describe('CLI', function() {
     let originalArgv;
 
@@ -140,5 +145,36 @@ describe('CLI', function() {
 
         process.argv.push('--help');
         cli();
+    });
+
+    it('should pass out all arguments present at command line', function(done) {
+        sinon.stub(inquirer, 'prompt');
+        let username = 'user';
+        let password = 'password';
+        argumentPusher('-u', username);
+        argumentPusher('-p', password);
+        cli().then(function(args) {
+            expect(args['cfUser']).to.equal(username);
+            expect(args['cfPassword']).to.equal(password);
+            done();
+        });
+    });
+
+    it('should pass out all arguments present at command line and prompted', function(done) {
+        let username = 'user';
+        let password = 'password';
+        argumentPusher('-u', username);
+
+        sinon.stub(inquirer, 'prompt', function(questions) {
+            return new Promise(function(resolve) {
+                resolve({cfPassword: password});
+            });
+        });
+
+        cli().then(function(args) {
+            expect(args['cfUser']).to.equal(username);
+            expect(args['cfPassword']).to.equal(password);
+            done();
+        });
     });
 });

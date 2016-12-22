@@ -34,9 +34,13 @@ let UserInteractionManager = function(config) {
         });
 
         return new Promise((resolve) => {
-            inquirer.prompt(questions).then((answers) => {
-               resolve(_.merge(out, answers));
-            });
+            if (questions.length) {
+                inquirer.prompt(questions).then((answers) => {
+                    resolve(_.merge(out, answers));
+                });
+            } else {
+                resolve(out);
+            }
         });
     };
 };
